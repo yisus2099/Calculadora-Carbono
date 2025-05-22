@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Huella de Carbono</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+<body>
+    <h1>Calculadora de Huella de Carbono</h1>
+    <form method="POST">
+        <label>Nombre de usuario:</label><br>
+        <input type="text" name="usuario" required><br><br>
+
+        <label>¿Cuántos kilómetros viajas por semana?</label><br>
+        <input type="text" name="kilometros"><br><br>
+
+        <label>Selecciona el medio de transporte:</label><br>
+        <select name="transporte">
+            <option value="auto">Auto (0.21 kg/km)</option>
+            <option value="moto">Moto (0.09 kg/km)</option>
+            <option value="metro">Metro (0.04 kg/km)</option>
+            <option value="bus">Autobús (0.05 kg/km)</option>
+            <option value="avion">Avión (0.25 kg/km)</option>
+            <option value="bici">Bicicleta / Caminar (0 kg/km)</option>
+        </select><br><br>
+
+        <input type="submit" value="Calcular">
+    </form>
+
+    {% if resultado %}
+        <p><strong>{{ resultado }}</strong></p>
+    {% endif %}
+
+    {% if recomendacion %}
+        <p><strong>Recomendación:</strong> {{ recomendacion }}</p>
+    {% endif %}
+
+    {% if historial %}
+        <h3>Historial de resultados:</h3>
+        <h3>{{ usuario }}</h3>
+        <ul>
+            {% for item in historial %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
